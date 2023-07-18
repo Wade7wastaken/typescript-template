@@ -1,49 +1,57 @@
 {
-	"extends": [
-		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:@typescript-eslint/recommended-type-checked"
-	],
+	"root": true,
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"project": "./tsconfig.json"
+		"project": "./tsconfig.json",
+		"tsconfigRootDir": "./",
+		"ecmaVersion": "latest",
+		"sourceType": "module"
 	},
-	"plugins": ["@typescript-eslint", "import", "unused-imports"],
-	"root": true,
-	"ignorePatterns": ["out/*.js"],
+	"plugins": ["@typescript-eslint", "import", "unicorn"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/strict-type-checked",
+		"plugin:@typescript-eslint/stylistic-type-checked",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:unicorn/recommended",
+		"prettier"
+	],
 	"rules": {
-		"@typescript-eslint/ban-ts-comment": "off",
-		"@typescript-eslint/consistent-type-imports": "warn",
+		// TypeScript Rules
 		"@typescript-eslint/explicit-function-return-type": [
 			"warn",
 			{
-				"allowExpressions": true
+				"allowExpressions": true,
+				"allowTypedFunctionExpressions": true,
+				"allowHigherOrderFunctions": true
 			}
 		],
 		"@typescript-eslint/no-unused-vars": [
 			"warn",
-			{ "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+			{ "args": "all", "argsIgnorePattern": "^_" }
 		],
-		"@typescript-eslint/strict-boolean-expressions": [
-			"warn",
-			{
-				"allowNullableObject": true
-			}
-		],
-		"@typescript-eslint/triple-slash-reference": "off",
-		"eqeqeq": ["warn", "always", { "null": "ignore" }],
-		"import/no-absolute-path": ["warn"],
-		"import/no-anonymous-default-export": "error",
-		"unused-imports/no-unused-imports": "warn",
-		"unused-imports/no-unused-vars": "off",
+		"@typescript-eslint/no-explicit-any": "warn",
+		"@typescript-eslint/no-non-null-assertion": "warn",
+		"@typescript-eslint/prefer-nullish-coalescing": "warn",
+		"@typescript-eslint/prefer-optional-chain": "warn",
+
+		// Import Rules
 		"import/order": [
 			"warn",
 			{
-				"alphabetize": {
-					"order": "asc",
-					"caseInsensitive": true
-				},
-				"newlines-between": "always"
+				"newlines-between": "always",
+				"alphabetize": { "order": "asc", "caseInsensitive": true }
+			}
+		],
+
+		// Unicorn Rules
+		"unicorn/filename-case": [
+			"error",
+			{
+				"cases": {
+					"camelCase": true
+				}
 			}
 		]
 	}
