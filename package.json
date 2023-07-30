@@ -2,14 +2,16 @@
 	"name": "typescript",
 	"version": "1.0.0",
 	"description": "A TypeScript template.",
-	"main": "index.js",
+	"main": "./out/index.js",
 	"type": "module",
 	"scripts": {
 		"start": "node out/app.js",
 		"prestart": "npm run build",
-		"build": "tsc"
+		"build": "tsc",
+		"lint": "eslint .",
+		"prettier:write": "prettier --write ./src"
 	},
-	"author": "Wade7",
+	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"@types/node": "^20.4.2",
@@ -23,4 +25,3 @@
 		"typescript": "^5.1.6"
 	}
 }
-
